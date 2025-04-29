@@ -56,7 +56,7 @@
                       <tbody class="bg-white divide-y divide-gray-200">
                         <% (1..5).each do |i| %>
                           <% if medium.send("description#{i}").present? %>
-                            <tr class="hover:bg-gray-50 transition-colors duration-150">
+                            <tr class="hover:bg-green-50 transition-colors duration-150">
                               <td class="px-2 py-1 whitespace-nowrap text-xs font-medium text-gray-900"><%= medium.send("description#{i}") %></td>
                               <td class="px-2 py-1 whitespace-nowrap text-xs text-gray-500"><%= medium.send("score#{i}") %></td>
                             </tr>
