@@ -36,10 +36,6 @@
           <% end %>
         <% end %>
         <div class="p-5 border-t border-gray-100">
-          <h3 class="text-lg font-semibold mb-2 truncate text-gray-800">
-            <%= link_to medium.name, medium_path(medium), class: "hover:text-blue-600 transition-colors duration-200" %>
-          </h3>
-          <p class="text-gray-600 text-sm mb-3">Type: <span class="font-medium"><%= medium.file_type %></span></p>
           
           <% if medium.file_type.start_with?('image/') && (medium.description1.present? || medium.bestGuessLabel.present?) %>
             <div class="mb-3">
