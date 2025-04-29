@@ -64,7 +64,7 @@ class MediaController < ApplicationController
           # Only analyze images
           if @medium.file_type.start_with?('image/')
             # Call Vision API asynchronously
-            AnalyzeImageJob.perform_later(@medium.id)
+            ::AnalyzeImageJob.perform_later(@medium.id)
           end
           redirect_to medium_path(@medium), notice: 'File was successfully uploaded.'
         else
