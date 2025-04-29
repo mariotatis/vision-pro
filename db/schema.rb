@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_29_155410) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_29_170719) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,5 +20,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_29_155410) do
     t.string "aws_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "score1"
+    t.string "score2"
+    t.string "score3"
+    t.string "score4"
+    t.string "score5"
+    t.string "description1"
+    t.string "description2"
+    t.string "description3"
+    t.string "description4"
+    t.string "description5"
+    t.string "bestGuessLabel"
   end
 end

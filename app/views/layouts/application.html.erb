@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Vision" %></title>
+    <title>PoC Vision Pro</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -24,7 +24,7 @@
         <div class="flex justify-between h-16">
           <div class="flex items-center">
             <div class="flex-shrink-0 flex items-center">
-              <span class="text-blue-600 font-bold text-xl">Vision</span>
+              <span class="text-blue-600 font-bold text-xl">PoC Vision Pro</span>
             </div>
             <div class="hidden md:ml-6 md:flex md:space-x-4">
               <%= link_to new_medium_path, class: "px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 flex items-center transition-colors duration-200" do %>
@@ -89,7 +89,7 @@
     <footer class="bg-white border-t border-gray-200 py-6 mt-auto">
       <div class="container mx-auto px-4">
         <div class="flex justify-center">
-          <p class="text-gray-600 text-sm">&copy; <%= Date.today.year %> Vision - File Upload System</p>
+          <p class="text-gray-600 text-sm">&copy; <%= Date.today.year %> PoC Vision Pro - Koombea Inc.</p>
         </div>
       </div>
     </footer>

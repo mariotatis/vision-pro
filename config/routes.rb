@@ -12,5 +12,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "media#new"
   
-  resources :media, only: [:index, :show, :new, :create, :destroy]
+  resources :media, only: [:index, :show, :new, :create, :destroy] do
+    member do
+      post :analyze
+    end
+  end
 end

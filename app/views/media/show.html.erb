@@ -56,15 +56,60 @@
               <p class="font-medium"><%= @medium.name %></p>
             </div>
             <div>
-              <p class="text-sm text-gray-500">Type</p>
-              <p class="font-medium"><%= @medium.file_type %></p>
-            </div>
-            <div>
               <p class="text-sm text-gray-500">Uploaded</p>
               <p class="font-medium"><%= @medium.created_at.strftime("%B %d, %Y at %I:%M %p") %></p>
             </div>
           </div>
         </div>
+        
+        <% if @medium.file_type.start_with?('image/') %>
+          <div class="mt-6" data-controller="vision-analysis" data-vision-analysis-medium-id-value="<%= @medium.id %>">
+            <% if @medium.bestGuessLabel.present? || @medium.description1.present? %>
+              <!-- Vision API results -->              
+              <% if @medium.bestGuessLabel.present? %>
+                <div class="mb-4">
+                  <p class="text-sm text-gray-500">Best Guess</p>
+                  <p class="font-medium text-lg"><%= @medium.bestGuessLabel %></p>
+                </div>
+              <% end %>
+              
+              <% if @medium.description1.present? %>
+                <div class="bg-white rounded-md border border-gray-200 overflow-hidden">
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                      <% (1..5).each do |i| %>
+                        <% if @medium.send("description#{i}").present? %>
+                          <tr class="hover:bg-gray-50 transition-colors duration-150">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><%= @medium.send("description#{i}") %></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= @medium.send("score#{i}") %></td>
+                          </tr>
+                        <% end %>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              <% end %>
+            <% else %>
+              <!-- Hidden form for automatic analysis -->
+              <div data-vision-analysis-target="analysisSection" class="hidden">
+                <%= button_to "", analyze_medium_path(@medium), method: :post, id: "autoAnalyzeButton", data: { vision_analysis_target: "analyzeButton" } %>
+              </div>
+              
+              <!-- Loading spinner (always visible) -->
+              <div class="mt-4 flex flex-col items-center" data-vision-analysis-target="loadingSpinner">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+                <p class="text-gray-600">Analyzing image with Google Vision API...</p>
+                <p class="text-sm text-gray-500 mt-2">This page will refresh automatically when analysis is complete.</p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
         
       </div>
     </div>
