@@ -37,7 +37,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # AWS SDK for S3 integration
-gem "aws-sdk-s3", "~> 1.134"
+gem "aws-sdk-s3", "~> 1.190"
 
 # Manage environment variables
 gem "dotenv-rails", "~> 2.8"
